@@ -59,6 +59,6 @@ chmod +x appimagetool
 # Disable sandbox and use extract-and-run if FUSE is missing
 export ARCH=x86_64
 export APPIMAGE_EXTRACT_AND_RUN=1
-./appimagetool DataGrip.AppDir DataGrip-${VERSION}-x86_64.AppImage
+./appimagetool DataGrip.AppDir DataGrip-x86_64.AppImage
 
-echo "Build complete: build/DataGrip-${VERSION}-x86_64.AppImage"
+echo "Build complete: build/DataGrip-x86_64.AppImage"
