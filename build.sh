@@ -48,7 +48,11 @@ cp DataGrip.AppDir/bin/datagrip.png DataGrip.AppDir/datagrip.png
 cp DataGrip.AppDir/bin/datagrip.svg DataGrip.AppDir/datagrip.svg || true
 
 # 6. Download appimagetool
-wget -q https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage -O appimagetool
+wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+if [ ! -f "appimagetool" ]; then
+  echo "Error: Failed to download appimagetool"
+  exit 1
+fi
 chmod +x appimagetool
 
 # 7. Build AppImage
