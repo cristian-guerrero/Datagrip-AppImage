@@ -59,6 +59,19 @@ chmod +x appimagetool
 # Disable sandbox and use extract-and-run if FUSE is missing
 export ARCH=x86_64
 export APPIMAGE_EXTRACT_AND_RUN=1
-./appimagetool DataGrip.AppDir DataGrip-x86_64.AppImage
+
+# Definir información de actualización (GitHub Releases)
+# Formato: gh-releases-zsync|<user>|<repo>|latest|<artifact_name>.zsync
+# Reemplaza <user> y <repo> con tus datos o déjalos como variables si el script los conoce
+# Por ahora usamos un placeholder que el usuario debe ajustar o que podemos intentar detectar
+REPO_OWNER=$(echo $GITHUB_REPOSITORY | cut -d'/' -f1)
+REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+
+if [ ! -z "$GITHUB_REPOSITORY" ]; then
+  UPDATE_INFO="gh-releases-zsync|${REPO_OWNER}|${REPO_NAME}|latest|DataGrip-x86_64.AppImage.zsync"
+  ./appimagetool -u "$UPDATE_INFO" DataGrip.AppDir DataGrip-x86_64.AppImage
+else
+  ./appimagetool DataGrip.AppDir DataGrip-x86_64.AppImage
+fi
 
 echo "Build complete: build/DataGrip-x86_64.AppImage"
